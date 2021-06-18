@@ -1,7 +1,8 @@
 USE codeup_test_db;
+TRUNCATE albums;
 
 INSERT INTO albums (artist, name, release_date, genre, sales)
-values ('Various artist','Grease The Original Soundtrack from the Motion Picture',1978,'Rock and roll',14.4),
+values ('Various artist','Grease The Original Soundtrack',1978,'Rock and roll',14.4),
        ('Led Zepplin', 'Led Zeppelin IV',1971, 'Hard rock, heavy metal, folk rock',29.0),
        ('Michael Jackson', 'Bad', 1987,'Pop, rhythm and blues, funk and rock',22.2),
        ('Alanis Morissette','Jagged Little Pill',1995,'Alternative rock',24.4),
@@ -15,7 +16,7 @@ values ('Various artist','Grease The Original Soundtrack from the Motion Picture
        ('Celine Dion','Let''s Talk About Love',1998,'Pop, soft rock',19.3),
        ('Metallica','Metallica',1991,'Heavy metal',25.2),
        ('The Beatles','1',2000,'Rock',23.4),
-       ('The Beatles','Abbey Road',1969,'Rock',23.4),
+       ('The Beatles','Abbey Road',1969,'Rock',14.4),
        ('ABBA','Gold:Greatest Hits',1991,'Pop,disco',23.0),
        ('Bruce Springsteen','Born in the U.S.A.',1984,'Heartland Rock',19.6),
        ('Pink Floyd', 'The Wall',1979,'Progressive rock',18.1=7),
