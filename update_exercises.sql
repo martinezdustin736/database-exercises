@@ -12,7 +12,7 @@ SELECT sales FROM albums;
 
 
 SELECT 'ALL albums released before 1980' AS 'albums';
-SELECT name FROM albums WHERE release_date < 1980;
+# SELECT name FROM albums WHERE release_date < 1980;
 SELECT release_date FROM albums WHERE release_date < 1980;
 
 # UPDATE albums
