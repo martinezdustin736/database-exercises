@@ -1,39 +1,52 @@
 USE employees;
 
-SELECT CONCAT(e.first_name, ' ', e.last_name) AS full_name, d.dept_name
-FROM employees as e
-         JOIN dept_emp as de
-              ON de.emp_no = e.emp_no
-         JOIN departments as d
-              ON d.dept_no = de.dept_no
-WHERE de.to_date = '9999-01-01' AND e.emp_no = 10001;
+SELECT employees.last_name, salaries.salary
+FROM employees JOIN salaries
+                    ON employees.emp_no = salaries.emp_no
+LIMIT 50;
 
-SELECT
-    d.dept_name AS 'Department Name',
-    CONCAT(e.first_name, ' ', e.last_name) AS current_department_manager
-FROM employees AS e
-         JOIN dept_manager AS dm ON e.emp_no = dm.emp_no
-    AND to_date > CURDATE()
-         JOIN departments AS d USING(dept_no)
-ORDER BY dept_name;
+USE join_test_db;
 
+# LEFT JOIN
 
+SELECT users.name AS user_name, roles.name AS role_name
+FROM users LEFT JOIN roles
+                     ON users.role_id = roles.id;
 
-SELECT
-    t.title,
-    COUNT(de.emp_no) AS Count
-FROM dept_emp AS de
-         JOIN titles AS t ON de.emp_no = t.emp_no
-    AND t.to_date > CURDATE()
-    AND de.to_date > CURDATE()
-         JOIN departments AS d ON d.dept_no = de.dept_no
-    AND dept_name = 'Customer Service'
-GROUP BY t.title;
+USE codeup_test_db;
 
-SELECT t.title, COUNT(t.title) AS Total
-FROM titles as t
-         JOIN dept_emp as de
-              ON de.emp_no = t.emp_no
-WHERE de.dept_no = 'd009' AND YEAR(t.to_date) = '9999' AND Year(de.to_date) = '9999'
-GROUP BY t.title;
+CREATE TABLE persons (
+                         person_id INT NOT NULL AUTO_INCREMENT,
+                         first_name VARCHAR(25) NOT NULL,
+                         album_id INT NOT NULL,
+                         PRIMARY KEY (person_id)
+);
 
+INSERT INTO persons (first_name, album_id) VALUES ('Olivia', 29), ('Santiago', 27), ('Tareq', 15), ('Anaya', 28);
+
+# JOIN aka INNER JOIN
+
+SELECT p.first_name, a.name FROM persons p JOIN albums a ON p.album_id = a.id;
+
+# left and right join are also called "Outer Joins"
+
+SELECT p.first_name, a.name FROM albums a LEFT JOIN persons p on a.id = p.album_id;
+
+SELECT p.first_name, a.name FROM persons p RIGHT JOIN albums a on a.id = p.album_id;
+
+SELECT p.first_name, a.name FROM albums a RIGHT JOIN persons p on a.id = p.album_id;
+
+SELECT p.first_name, a.name FROM persons p LEFT JOIN albums a on a.id = p.album_id;
+
+# junction tables // associative tables // join tables
+
+CREATE TABLE preferences (
+                             person_id INT NOT NULL,
+                             album_id INT NOT NULL
+);
+
+INSERT INTO preferences (person_id, album_id) VALUES (1, 12), (1, 5), (1, 22), (1, 29), (2, 1), (2, 31), (2, 30), (3, 11), (3, 26), (3, 25);
+
+SELECT p.first_name AS name, a.name AS album FROM persons p JOIN preferences pf ON p.person_id = pf.person_id JOIN albums a ON pf.album_id = a.id;
+
+# You can even circle back to a table you've already joined from, give it a different alias, and join to it again
