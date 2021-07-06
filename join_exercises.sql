@@ -22,7 +22,7 @@ CREATE TABLE persons (
                          PRIMARY KEY (person_id)
 );
 
-INSERT INTO persons (first_name, album_id) VALUES ('Dustin', 30),('Olivia', 29), ('Santiago', 27), ('Tareq', 15), ('Anaya', 28);
+INSERT INTO persons (first_name, album_id) VALUES ('Olivia', 29), ('Santiago', 27), ('Tareq', 15), ('Anaya', 28);
 
 # JOIN aka INNER JOIN
 
